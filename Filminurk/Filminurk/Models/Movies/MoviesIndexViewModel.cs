@@ -12,5 +12,7 @@
         public double? CurrentRating { get; set; }
         //public List<UserComment>? Reviews { get; set; }
         public Genre Genre { get; set; }
+        public DateTime? EntryCreatedAt { get; set; }
+        public DateTime? EntryModifiedAt { get; set; }
     }
 }
