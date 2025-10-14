@@ -30,7 +30,9 @@
 					<td>@movie.FirstPublished</td>
 					<td>@movie.CurrentRating</td>
 					<td>@movie.Genre</td>
-					<td></td>
+					<td>
+						<a asp-action="delete" asp-controller="Movies" asp-route-id="@movie.ID" class="btn btn-outline-dange"></a>
+					</td>
 					
 				</tr>
 				rowNumber += 1;
