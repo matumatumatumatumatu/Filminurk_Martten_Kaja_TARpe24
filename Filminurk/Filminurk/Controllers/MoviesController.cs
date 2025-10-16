@@ -1,4 +1,5 @@
-﻿using Filminurk.Core.Dto;
+﻿using System.IO;
+using Filminurk.Core.Dto;
 using Filminurk.Core.ServiceInterface;
 using Filminurk.Data;
 using Filminurk.Models.Movies;
@@ -35,7 +36,7 @@ namespace Filminurk.Controllers
             return View("Create", result);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(MoviesCreateViewModel vm)
+        public async Task<IActionResult> Create(MoviesCreateUpdateViewModel vm)
         {
             var dto = new MoviesDTO()
             {
@@ -60,6 +61,27 @@ namespace Filminurk.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var movie = await _movieServices
+        }
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var movie = await _movieServices.DetailsAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+
+            }
+            var vm = new MoviesCreateUpdateViewModel();
+            vm.ID = movie.ID;
+            vm.Title = movie.Title;
+            vm.FirstPublished = movie.FirstPublished;
+            vm.CurrentRating = movie.CurrentRating;
+            vm.Director = movie.Director;
+            vm.Actors = movie.Actors;
+            vm.RottenTomatoes = movie.RottenTomatoes;
+            vm.EntryCreatedAt = movie.EntryCreatedAt;
+            vm.EntryModifiedAt = movie.EntryModifiedAt;
+            return View("CreateUpdate", vm);
         }
     }
 }
