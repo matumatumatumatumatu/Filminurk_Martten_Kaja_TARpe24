@@ -71,8 +71,17 @@ else
 				<input asp-for="OscarsWon" class="form-control" />
 			</div>
 		</div>
+		@if (Model.ID.HasValue)
+		{
+			<input asp-action="Create" asp-controller="Movies" type="submit" class="btn btn-primary" value="Create" />
+		}
+		else
+		{
+			<input asp-action="Update" asp-controller="Movies" type="submit" class="btn btn-primary" value="Update" />
+		}
+		<a asp-action="Index" asp-controller="Movies" class="btn btn-sucess" value="Back"></a>
 
-		<input asp-action="Create" asp-controller="Movies" type="submit" class="btn btn-primary" value="Create"/>
+		
 
 	</form>
 </div>
