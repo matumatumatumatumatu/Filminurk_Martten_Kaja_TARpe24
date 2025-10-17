@@ -60,7 +60,7 @@ namespace Filminurk.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var movie = await _movieServices
+            var movie = await _movieServices.DetailsAsync(id);
         }
         [HttpGet]
         public async Task<IActionResult> Update(Guid id)
@@ -82,6 +82,7 @@ namespace Filminurk.Controllers
             vm.EntryCreatedAt = movie.EntryCreatedAt;
             vm.EntryModifiedAt = movie.EntryModifiedAt;
             return View("CreateUpdate", vm);
+            return res
         }
     }
 }
