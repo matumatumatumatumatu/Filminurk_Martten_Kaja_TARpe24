@@ -12,8 +12,8 @@ namespace Filminurk.Core.ServiceInterface
     {
         Task<Movie> Create(MoviesDTO dto);
         Task<Movie> DetailsAsync(Guid id);
-    }
-            [HttpGet]
+    };
+       [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
@@ -28,4 +28,4 @@ namespace Filminurk.Core.ServiceInterface
 
             return (IActionResult)result;
         }
-    }
+}

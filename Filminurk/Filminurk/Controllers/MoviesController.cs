@@ -12,6 +12,7 @@ namespace Filminurk.Controllers
     {
         private readonly FilminurkTARpe24Context _context;
         private readonly IMovieServices _movieServices;
+
         public MoviesController (FilminurkTARpe24Context context, IMovieServices movieServices)
         {
             _context = context;
@@ -25,7 +26,7 @@ namespace Filminurk.Controllers
                 FirstPublished = x.FirstPublished,
                 CurrentRating = x.CurrentRating,
 
-                //Genre = x.Genre,
+                
             });
             return View(result);
         }
@@ -82,7 +83,6 @@ namespace Filminurk.Controllers
             vm.EntryCreatedAt = movie.EntryCreatedAt;
             vm.EntryModifiedAt = movie.EntryModifiedAt;
             return View("CreateUpdate", vm);
-            return res
         }
     }
 }

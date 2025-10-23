@@ -23,5 +23,8 @@ namespace Filminurk.Core.Domain
         public decimal? RottenTomatoes { get; set; }
         public Genre Genre { get; set; }
         public int? OscarsWon { get; set; }
+        public DateTime? EntryCreatedAt { get; set; }
+        public DateTime? EntryModifiedAt { get; set; }
     }
 }
+//
