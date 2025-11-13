@@ -56,5 +56,10 @@ namespace Filminurk.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public async Task<IActionResult> DetailsAdmin(Guid id)
+        {
+            var requestedComment = await
+        }
     }
 }
