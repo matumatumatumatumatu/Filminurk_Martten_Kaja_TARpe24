@@ -6,7 +6,7 @@ namespace Filminurk.Models.UserComments
     {
         [Key]
         public Guid CommentID { get; set; }
-        public string? CommenterUserID { get; set; }
+        public string? CommenterUserID { get; set; } = "00000000-0000-0000-000000000001";
         public string CommentBody { get; set; }
         public int? CommentedScore { get; set; }
         public int? IsHelpful { get; set; }
