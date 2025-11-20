@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Filminurk.Core.Domain;
 
-namespace Filminurk.Core.Domain
+namespace Filminurk.Core.Dto
 {
-    public class FavouriteList
+    public class FavouriteListDTO
     {
         public Guid FavouriteListID { get; set; }
         public string ListBelongsToUser { get; set; }
@@ -22,5 +23,8 @@ namespace Filminurk.Core.Domain
         public DateTime? ListModifiedAt { get; set; }
         public DateTime? ListDeletedAt { get; set; }
         public bool? IsReported { get; set; }
+
+        // imagemodel for index
+        //public List<FavouriteListIndexImageViewModel> Image { get; set; } = new List<FavouriteListIndexImageViewModel>();
     }
 }
