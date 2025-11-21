@@ -81,13 +81,21 @@ namespace Filminurk.Controllers
             newListDto.ListBelongsToUser = "00000000-0000-0000-0000-000000000001";
             newListDto.ListModifiedAt = DateTime.UtcNow;
             newListDto.ListDeletedAt = vm.ListDeletedAt;
+            newListDto.ListOfMovies = vm.ListOfMovies;
 
-            List<Guid> convertedIDs = new List<Guid>();
-            if (newListDto.ListOfMovies != null)
+
+            foreach(var movieId in tempParse)
             {
-                convertedIDs = MovieToId(newListDto.ListOfMovies);
+                var thismovie = _context.Movies.Select(tm => tm.ID == movieId);
+                newListDto.ListOfMovies.Add((Movie)thismovie);
             }
-            var newList = await _favouriteListsServices.Create(newListDto, convertedIDs);
+
+            //List<Guid> convertedIDs = new List<Guid>();
+            //if (newListDto.ListOfMovies != null)
+            //{
+            //    convertedIDs = MovieToId(newListDto.ListOfMovies);
+            //}
+            var newList = await _favouriteListsServices.Create(newListDto/*, convertedIDs*/);
             if(newList != null)
             {
                 return BadRequest(); 

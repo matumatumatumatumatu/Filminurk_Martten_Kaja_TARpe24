@@ -5,7 +5,7 @@ namespace Filminurk.Models.FavouriteLists
 {
     public class FavouriteListsIndexViewModel
     {
-        public Guid FavouriteListID { get; set; }
+        public Guid? FavouriteListID { get; set; }
         public string ListBelongsToUser { get; set; }
         public bool IsMovieOrActor { get; set; }
         public string ListName { get; set; }

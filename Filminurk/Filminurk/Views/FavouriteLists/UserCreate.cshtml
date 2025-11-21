@@ -46,12 +46,12 @@
 		}
 		else
 		{
-			@foreach (var movie in ViewBag.allmovies)
+			@foreach (var movie in allMoviesTickboxes)
 			{
 				<tr>
 					<td>@movie.Title</td>
 					<td>@movie.FirstPublished</td>
-					<td>@movie.MovieGenre</td>
+					<td>@movie.Genre</td>
 					<td>
 						@if (movie.ID.HasValue)
 						{

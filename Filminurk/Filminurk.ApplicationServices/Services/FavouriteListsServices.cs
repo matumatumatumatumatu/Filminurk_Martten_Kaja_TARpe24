@@ -37,7 +37,7 @@ namespace Filminurk.ApplicationServices.Services
             newList.ListCreatedAt = dto.ListCreatedAt;
             newList.ListModifiedAt = dto.ListModifiedAt;
             newList.ListDeletedAt = dto.ListDeletedAt;
-            newList.ListOfMovies = selectedMovies;
+            newList.ListOfMovies = dto.ListOfMovies;
             await _context.FavouriteLists.AddAsync(newList);
             await _context.SaveChangesAsync();
 
