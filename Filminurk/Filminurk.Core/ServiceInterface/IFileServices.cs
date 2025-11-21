@@ -13,6 +13,7 @@ namespace Filminurk.Core.ServiceInterface
         void FileToApi(MoviesDTO dto, Movie domain);
 
         Task<FileToApi> RemoveImageFromApi(FileToApiDTO dto);
+
         Task<FileToApi> RemoveImagesFromApi(FileToApiDTO[] dto);
     }
 

@@ -44,5 +44,6 @@ namespace Filminurk.ApplicationServices.Services
             var result = await _context.Movies.FirstOrDefaultAsync(x => x.ID == id);
             return result;
         }
+
     }
 }
