@@ -30,8 +30,8 @@ namespace Filminurk.Controllers
             });
             return View(result);
         }
-        [HttpGet]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (id == null)
             {
@@ -56,7 +56,7 @@ namespace Filminurk.Controllers
         {
             var dto = new MoviesDTO()
             {
-                ID = vm.ID,
+                ID = (Guid)vm.ID,
                 Title = vm.Title,
                 FirstPublished = vm.FirstPublished,
                 CurrentRating = vm.CurrentRating,
@@ -77,6 +77,7 @@ namespace Filminurk.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var movie = await _movieServices.DetailsAsync(id);
+            return View(movie);
         }
         [HttpGet]
         public async Task<IActionResult> Update(Guid id)

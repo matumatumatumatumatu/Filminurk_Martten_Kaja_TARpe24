@@ -34,7 +34,7 @@ namespace Filminurk.Controllers
             UserCommentsCreateViewModel newcomment = new();
             return View(newcomment);
         }
-        [HttpPost,ActionName("NewComment")]
+        [HttpPost, ActionName("NewComment")]
         public async Task<IActionResult> NewCommentPost(UserCommentsCreateViewModel newcommentVM)
         {
             var dto = new UserCommentDTO()
@@ -47,10 +47,10 @@ namespace Filminurk.Controllers
                 CommentModifiedAt = newcommentVM.CommentModifiedAt,
                 IsHelpful = (int)newcommentVM.IsHelpful,
                 IsHarmful = (int)newcommentVM.IsHarmful,
-                
+
             };
             var result = await _userCommentsServices.NewComment(dto);
-            if(result == null)
+            if (result == null)
             {
                 return NotFound();
             }
@@ -59,7 +59,39 @@ namespace Filminurk.Controllers
         [HttpGet]
         public async Task<IActionResult> DetailsAdmin(Guid id)
         {
-            var requestedComment = await
+            var requestedComment = await _userCommentsServices.DetailsAsync(id);
+            if (requestedComment == null) { return NotFound(); }
+            var commentVM = new UserCommentsIndexViewModel();
+            commentVM.CommentID = requestedComment.CommentID;
+            commentVM.CommentBody = requestedComment.CommentBody;
+            commentVM.CommenterUserID = requestedComment.CommenterUserID;
+            commentVM.CommentedScore = requestedComment.CommentedScore;
+            commentVM.CommentCreatedAt = requestedComment.CommentCreatedAt;
+            commentVM.CommentModifiedAt = requestedComment.CommentModifiedAt;
+            commentVM.CommentDeletedAt = requestedComment.CommentDeletedAt;
+
+            return View(commentVM);
         }
+        [HttpGet]
+        public async Task<IActionResult> DeleteComment(Guid id)
+        {
+            var deleteEntry = await _userCommentsServices.DetailsAsync(id);
+            if (deleteEntry == null) { return NotFound(); }
+            var commentVM = new UserCommentsIndexViewModel();
+            commentVM.CommentID = deleteEntry.CommentID;
+            commentVM.CommentBody = deleteEntry.CommentBody;
+            commentVM.CommenterUserID = deleteEntry.CommenterUserID;
+            commentVM.CommentedScore = deleteEntry.CommentedScore;
+            commentVM.CommentCreatedAt = deleteEntry.CommentCreatedAt;
+            commentVM.CommentModifiedAt = deleteEntry.CommentModifiedAt;
+            commentVM.CommentDeletedAt = deleteEntry.CommentDeletedAt;
+            return View("DeleteAdmin",commentVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteAdminPost(Guid id)
+        {
+            var deleteThisComment = await _userCommentsServices.Delete(id);
+            if (deleteThisComment == null) { return NotFound(); }
+            return RedirectToAction("Index");
     }
 }
