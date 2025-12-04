@@ -138,7 +138,7 @@ namespace Filminurk.Controllers
         [HttpPost]
         public IActionResult UserTogglePrivacy(Guid id)
         {
-            FavouriteListDTO thisList = _favouriteListsServices.DetailsAsync(id);
+            FavouriteListDTO thisList = await _favouriteListsServices.DetailsAsync(id);
 
             FavouriteListDTO updatedList = new FavouriteListDTO();
             updatedList.FavouriteListID = thisList.FavouriteListID;

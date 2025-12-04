@@ -49,7 +49,21 @@ namespace Filminurk.ApplicationServices.Services
         }
         public async Task<FavouriteList> Update(FavouriteListDTO updatedList)
         {
+            FavouriteList updatedListInDB = new();
 
+            updatedListInDB.FavouriteListID = updatedList.FavouriteListID;
+            updatedListInDB.ListBelongsToUser = updatedList.ListBelongsToUser;
+            updatedListInDB.IsMovieOrActor = updatedList.IsMovieOrActor;
+            updatedListInDB.ListName = updatedList.ListName;
+            updatedListInDB.ListDescription = updatedList.ListDescription;
+            updatedListInDB.IsPrivate = updatedList.IsPrivate;
+            updatedListInDB.ListOfMovies = updatedList.ListOfMovies;
+            updatedListInDB.ListCreatedAt = updatedList.ListCreatedAt;
+            updatedListInDB.ListDeletedAt = updatedList.ListDeletedAt;
+            updatedListInDB.ListModifiedAt = updatedList.ListModifiedAt;
+            _context.FavouriteLists.Update(updatedListInDB);
+            await _context.SaveChangesAsync();
+            return updatedListInDB;
         }
     }
 }

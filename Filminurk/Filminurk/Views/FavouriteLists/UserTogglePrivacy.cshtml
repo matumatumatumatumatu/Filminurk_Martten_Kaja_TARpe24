@@ -3,9 +3,10 @@
 	int rowNumber = 1;
 }
 <div>
+	<h1>USERTOGGLEPRIVACY</h1>
 	@if (@Model.IsReported == true)
 	{
-		@:Sinu nimekiri rikub kogukonna reegleid<br/>Oleme seadnud nimekirja privaatseks kuni admin selle üle vaatab.<br/>
+		@:Sinu nimekiri rikub kogukonna reegleid<br />Oleme seadnud nimekirja privaatseks kuni admin selle üle vaatab.<br />
 	}
 	<table>
 		<tr>@Model.ListName</tr>
@@ -37,9 +38,9 @@
 		}
 	</table>
 	<div>
-		<input asp-action="UserDelete" asp-controller="FavouriteListsController" asp-route-id="@Model.FavouriteListID" type="submit" class="btn btn-danger" value="Kustuta nimekiri"/>
-		<input asp-action="UserTogglePrivacy" formmethod="get" asp-controller="FavouriteListsController" asp-route-id="@Model.FavouriteListID"  class="btn btn-warning" value="Muuda nimekiri privaatseks" />
-		<input asp-action="UserEditList" asp-controller="FavouriteListsController" asp-route-id="@Model.FavouriteListID" type="submit" class="btn btn-success" value="Muuda nimekirja sisu ja andmeid" />
+
+		<input asp-action="UserTogglePrivacy" asp-controller="FavouriteListsController" asp-route-id="@Model.FavouriteListID" type="submit" class="btn btn-warning" value="Muuda nimekiri privaatseks" />
+
 		<a asp-action="Index" asp-controller="FavouriteListsController" class="btn btn-light">Tagasi</a>
 	</div>
 </div>
