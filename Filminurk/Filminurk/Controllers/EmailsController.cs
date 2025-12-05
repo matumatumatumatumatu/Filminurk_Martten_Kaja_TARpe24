@@ -1,4 +1,5 @@
-﻿using Filminurk.Core.Dto;
+﻿using Filminurk.ApplicationServices.Services;
+using Filminurk.Core.Dto;
 using Filminurk.Core.ServiceInterface;
 using Filminurk.Models.Emails;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,8 @@ namespace Filminurk.Controllers
 {
     public class EmailsController : Controller
     {
-        private readonly IEmailServices _emailServices;
+        private readonly IEmailsServices _emailsServices;
+
         public EmailsController(IEmailsServices emailsServices)
         {
             _emailsServices = emailsServices;
@@ -25,7 +27,7 @@ namespace Filminurk.Controllers
                 EmailSubject = vm.EmailSubject,
                 EmailContent = vm.EmailContent
             };
-            _emailServices.SendEmail(dto);
+            _emailsServices.SendEmail(dto);
             return RedirectToAction(nameof(Index));
         }
     }
