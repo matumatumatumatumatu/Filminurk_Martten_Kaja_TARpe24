@@ -92,6 +92,8 @@ namespace Filminurk.Controllers
         {
             var deleteThisComment = await _userCommentsServices.Delete(id);
             if (deleteThisComment == null) { return NotFound(); }
+
             return RedirectToAction("Index");
+        }
     }
 }

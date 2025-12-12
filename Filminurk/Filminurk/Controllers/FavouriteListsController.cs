@@ -136,9 +136,9 @@ namespace Filminurk.Controllers
             return View("Details",thisList);
         }
         [HttpPost]
-        public IActionResult UserTogglePrivacy(Guid id)
+        public async Task<IActionResult> UserTogglePrivacy(Guid id)
         {
-            FavouriteListDTO thisList = await _favouriteListsServices.DetailsAsync(id);
+            FavouriteList thisList = await _favouriteListsServices.DetailsAsync(id);
 
             FavouriteListDTO updatedList = new FavouriteListDTO();
             updatedList.FavouriteListID = thisList.FavouriteListID;
@@ -155,7 +155,7 @@ namespace Filminurk.Controllers
 
 
             thisList.IsPrivate =!thisList.IsPrivate;
-            _favouriteListsServices.Update(thisList);
+            _favouriteListsServices.Update(updatedList);
             return View("Details");
         }
         private List<Guid> MovieToId (List<Movie> listOfMovies)
