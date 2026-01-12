@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Filminurk.Core.Dto.AccuWeatherDTOs.AirAndPollen;
 
 namespace Filminurk.Core.Dto.AccuWeatherDTOs
 {
