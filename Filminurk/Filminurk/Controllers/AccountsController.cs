@@ -183,7 +183,7 @@ namespace Filminurk.Controllers
             {
                 var user = new ApplicationUser()
                 {
-                    UserName = model.DisplayName,
+                    UserName = model.Email,
                     Email = model.Email,
                     ProfileType = model.ProfileType,
                 };
