@@ -9,10 +9,11 @@ using Filminurk.Core.Dto;
 using Filminurk.Core.ServiceInterface;
 using Filminurk.Data;
 using Microsoft.EntityFrameworkCore;
+using Filminurk.Models.Actors;
 
 namespace Filminurk.ApplicationServices.Services
 {
-    public class ActorServices : IActorServices
+    public class ActorServices : IActorsServices
     {
         private readonly FilminurkTARpe24Context _context;
 
@@ -78,4 +79,4 @@ namespace Filminurk.ApplicationServices.Services
             return await _context.Actors.ToListAsync();
         }
     }
-}}
+}
