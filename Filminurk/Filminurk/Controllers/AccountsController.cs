@@ -5,6 +5,7 @@ using Filminurk.Models.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Filminurk.ApplicationServices.Services;
 
 namespace Filminurk.Controllers
 {
@@ -14,6 +15,7 @@ namespace Filminurk.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly FilminurkTARpe24Context _context;
         private readonly IEmailsServices _emailsServices;
+        private readonly EmailsServices _emailServices;
 
         public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, FilminurkTARpe24Context context)
         {
@@ -187,7 +189,8 @@ namespace Filminurk.Controllers
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
                     var confirmationLink = Url.Action("ConfirmEmail", "Accounts", new { userID = user.Id, token = token }, Request.Scheme);
-                    //HOMEWORK TASK: koosta email kasutajalt pärineva aadressile saatmiseks, kasutaja saab oma postkastist kätte emaili kinnituslingiga, mille jaoks kasutatakse tokenit. siin tuleb välja kutsuda vastav, uus, emaili saatmise meetod, mis saadab õige sisuga kirja.
+                    //HOMEWORK TASK: koosta email kasutajalt pärineva aadressile saatmiseks, kasutaja saab oma postkastist kätte emaili kinnituslingiga, mille jaoks kasutatakse tokenit. siin tuleb välja kutsuda vastav, uus, emaili saatmise meetod, mis saadab õige sisuga kirja.'
+                    await _emailServices.SendConfirmationEmail(user,confirmationLink);
                 }
 
 

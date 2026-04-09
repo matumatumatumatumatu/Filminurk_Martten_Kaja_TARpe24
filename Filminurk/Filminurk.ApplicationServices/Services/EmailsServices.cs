@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Filminurk.Core.Domain;
 using Filminurk.Core.Dto;
 using Filminurk.Core.ServiceInterface;
 using MailKit.Net.Smtp;
@@ -40,6 +41,21 @@ namespace Filminurk.ApplicationServices.Services
             smtp.Authenticate(_configuration.GetSection("EmailUserName").Value, _configuration.GetSection("EmailPassword").Value);
             smtp.Send(email);
             smtp.Disconnect(true);
+        }
+
+        public async Task SendConfirmationEmail(ApplicationUser user,string confirmationLink)
+        {
+
+
+
+            var dto = new EmailDTO
+            {
+                SendToThisAddress = user.Email,
+                EmailSubject = "Dear "+user.DisplayName,
+                EmailContent = "Click here to confirm your account: "+ confirmationLink
+            };
+
+            SendEmail(dto);
         }
     }
 }
