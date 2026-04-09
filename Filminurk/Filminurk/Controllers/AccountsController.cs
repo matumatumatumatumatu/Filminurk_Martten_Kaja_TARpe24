@@ -14,14 +14,18 @@ namespace Filminurk.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly FilminurkTARpe24Context _context;
-        private readonly IEmailsServices _emailsServices;
-        private readonly EmailsServices _emailServices;
+        private readonly IEmailsServices _emailServices;
 
-        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, FilminurkTARpe24Context context)
+        public AccountsController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            FilminurkTARpe24Context context,
+            IEmailsServices emailServices) // inject the interface
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _emailServices = emailServices;
         }
         [HttpGet]
         public async Task<IActionResult> AddPassword()

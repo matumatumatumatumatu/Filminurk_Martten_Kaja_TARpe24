@@ -14,8 +14,8 @@ namespace Filminurk.Core.Dto
         public bool ProfileType { get; set; }
         public List<Guid>? FavouriteListIDs { get; set; }
         public List<Guid>? CommentIDs { get; set; }
-        public string AvatarImageID { get; set; }
-        public string DisplayName { get; set; }
+        public string? AvatarImageID { get; set; }
+        public string? DisplayName { get; set; }
         public int? Reputation { get; set; } = 0;
         public string? Signagture { get; set; }
     }

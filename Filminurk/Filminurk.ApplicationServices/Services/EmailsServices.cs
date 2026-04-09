@@ -51,7 +51,7 @@ namespace Filminurk.ApplicationServices.Services
             var dto = new EmailDTO
             {
                 SendToThisAddress = user.Email,
-                EmailSubject = "Dear "+user.DisplayName,
+                EmailSubject = "Dear "+user.UserName,
                 EmailContent = "Click here to confirm your account: "+ confirmationLink
             };
 
