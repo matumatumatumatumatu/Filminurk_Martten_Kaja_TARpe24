@@ -14,6 +14,7 @@ namespace Filminurk.ApplicationServices.Services
     public class MovieServices : IMovieServices
     {
         private readonly FilminurkTARpe24Context _context;
+        
 
         public MovieServices(FilminurkTARpe24Context context)
         {
@@ -42,6 +43,40 @@ namespace Filminurk.ApplicationServices.Services
         public async Task<Movie> DetailsAsync(Guid id)
         {
             var result = await _context.Movies.FirstOrDefaultAsync(x => x.ID == id);
+            return result;
+        }
+
+        public async Task<Movie> Update(MoviesDTO dto)
+        {
+            Movie movie = new Movie();
+            movie.Title = dto.Title;
+            movie.Description = dto.Description;
+            movie.CurrentRating = dto.CurrentRating;
+            movie.FirstPublished = dto.FirstPublished;
+            movie.Director = dto.Director;
+            movie.RottenTomatoes = dto.RottenTomatoes;
+            movie.Genre = dto.Genre;
+            movie.Actors = dto.Actors;
+
+            _context.Movies.Update(movie);
+            await _context.SaveChangesAsync();
+            return movie;
+        }
+
+        public async Task<Movie> Delete(Guid id)
+        {
+            var result = await _context.Movies.FirstOrDefaultAsync(m => m.ID == id);
+
+            var images = await _context.FilesToApi.Where(x => x.MovieID == id).Select(y => new FileToApiDTO
+            {
+                ImageID = y.ImageID,
+                MovieID = y.MovieID,
+                FilePath = y.ExistingFilePath
+            }).ToArrayAsync();
+
+            _context.Movies.Remove(result);
+            await _context.SaveChangesAsync();
+
             return result;
         }
 

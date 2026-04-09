@@ -53,13 +53,13 @@ namespace Filminurk.Controllers
             vm.DayIcon = dto.DayIcon;
             vm.DayIconPhrase = dto.DayIconPhrase;
             vm.DayHasPrecipitation = dto.DayHasPrecipitation;
-            vm.DayPrecipitationType = dto.DayPrecipitationType;
+           // vm.DayPrecipitationType = dto.DayPrecipitationType;
             vm.DayPrecipitationIntensity = dto.DayPrecipitationIntensity;
 
             vm.NightIcon = dto.NightIcon;
             vm.NightIconPhrase = dto.NightIconPhrase;
             vm.NightHasPrecipitation = dto.NightHasPrecipitation;
-            vm.NightPrecipitationType = dto.NightPrecipitationType;
+            //vm.NightPrecipitationType = dto.NightPrecipitationType;
             vm.NightPrecipitationIntensity = dto.NightPrecipitationIntensity;
 
             vm.MobileLink = dto.MobileLink;

@@ -19,5 +19,6 @@ namespace Filminurk.Data
         public DbSet<FavouriteList> FavouriteLists { get; set; }
         public DbSet<FileToDatabase> FilesToDatabase { get; set; }
         public DbSet<IdentityRole> IdentityRoles { get; set; }
+
     }
 }
