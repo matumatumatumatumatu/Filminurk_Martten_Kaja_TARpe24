@@ -14,7 +14,7 @@ namespace Filminurk.Models.Actors
 
         public int? Age { get; set; }
         public Nationality Nationality { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public DateTime? EntryCreatedAt { get; set; }
         public DateTime? EntryModifiedAt { get; set; }
     }
