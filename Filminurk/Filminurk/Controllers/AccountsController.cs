@@ -20,7 +20,7 @@ namespace Filminurk.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             FilminurkTARpe24Context context,
-            IEmailsServices emailServices) // inject the interface
+            IEmailsServices emailServices)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -241,7 +241,7 @@ namespace Filminurk.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null && !user.EmailConfirmed && (await _userManager.CheckPasswordAsync(user, model.Password)))
                 {
-                    ModelState.AddModelError("", "Sinu email ei ole kinnitatud, palun vaata spämi kausta.");
+                    ModelState.AddModelError("", "Sinu email ei ole kinnitatud, palun vaata spämmikausta");
                     return View(model);
                 }
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
@@ -256,13 +256,23 @@ namespace Filminurk.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
+                if (result.Succeeded == false)
+                {
+                    ModelState.AddModelError("", "Kasutajanimi või parool on vale.");
+                }
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("", "Sisselogimine ebaõnnestus, kasutaja keelatud");
+                }
                 if (result.IsLockedOut)
+
                 {
                     return View("AccountLocked");
                 }
+
                 ModelState.AddModelError("", "Sisselogimine ebaõnnestus, kontakteeru administraatoriga");
             }
-                return View(model);
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> Logout()
