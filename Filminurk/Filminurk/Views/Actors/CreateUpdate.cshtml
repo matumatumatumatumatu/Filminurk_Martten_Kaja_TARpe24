@@ -11,7 +11,7 @@ else
 }
 
 <div>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" asp-action="@(Model.ActorID != Guid.Empty ? "Update" : "Create")" asp-controller="Actors">
         <input asp-for="ActorID" type="hidden" />
         <input asp-for="EntryCreatedAt" type="hidden" />
         <input asp-for="EntryModifiedAt" type="hidden" />
@@ -69,11 +69,15 @@ else
 
         @if (Model.ActorID != Guid.Empty)
         {
-            <input asp-action="Update" asp-controller="Actors" type="submit" class="btn btn-primary" value="Uuenda" />
+            <button type="submit" class="btn btn-primary">
+                Uuenda
+            </button>
         }
         else
         {
-            <input asp-action="Create" asp-controller="Actors" type="submit" class="btn btn-primary" value="Lisa" />
+            <button type="submit" class="btn btn-primary">
+                Lisa
+            </button>
         }
         <a asp-action="Index" asp-controller="Actors" class="btn btn-success">Tagasi</a>
 

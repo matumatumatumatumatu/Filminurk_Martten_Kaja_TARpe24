@@ -73,7 +73,7 @@ namespace Filminurk.Controllers
             var actor = await _actorServices.DetailsAsync(id);
             if (actor == null) return NotFound();
 
-            var vm = new ActorsCreateUpdateViewModel
+            var vm = new ActorsDetailsViewModel
             {
                 ActorID = actor.ActorID,
                 FirstName = actor.FirstName,
@@ -81,7 +81,7 @@ namespace Filminurk.Controllers
                 NickName = actor.NickName,
                 Age = actor.Age,
                 Nationality = (Nationality)actor.Nationality,
-                IsActive = actor.IsActive,
+                IsActive = actor.IsActive ?? false,
                 EntryCreatedAt = actor.EntryCreatedAt,
                 EntryModifiedAt = actor.EntryModifiedAt,
                 MoviesActedFor = actor.MoviesActedFor
@@ -104,7 +104,7 @@ namespace Filminurk.Controllers
                 NickName = actor.NickName,
                 Age = actor.Age,
                 Nationality = (Nationality)actor.Nationality,
-                IsActive = actor.IsActive,
+                IsActive = actor.IsActive ?? false,
                 EntryCreatedAt = actor.EntryCreatedAt,
                 EntryModifiedAt = actor.EntryModifiedAt,
                 MoviesActedFor = actor.MoviesActedFor
@@ -144,7 +144,7 @@ namespace Filminurk.Controllers
             var actor = await _actorServices.DetailsAsync(id);
             if (actor == null) return NotFound();
 
-            var vm = new ActorsCreateUpdateViewModel
+            var vm = new ActorsDeleteViewModel
             {
                 ActorID = actor.ActorID,
                 FirstName = actor.FirstName,
@@ -152,7 +152,7 @@ namespace Filminurk.Controllers
                 NickName = actor.NickName,
                 Age = actor.Age,
                 Nationality = (Nationality)actor.Nationality,
-                IsActive = actor.IsActive,
+                IsActive = actor.IsActive ?? false,
                 EntryCreatedAt = actor.EntryCreatedAt,
                 EntryModifiedAt = actor.EntryModifiedAt,
                 MoviesActedFor = actor.MoviesActedFor
