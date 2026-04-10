@@ -54,6 +54,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapHub<Filminurk.Hubs.ChatHub>("/chatHub");
+app.MapHub<Filminurk.Hubs.ChatHub>("/ChatHub/Index");
 
 app.Run();
