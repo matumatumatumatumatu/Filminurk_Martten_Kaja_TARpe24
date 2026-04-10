@@ -23,7 +23,7 @@ namespace Filminurk.Controllers
 
             var vm = new ChatHubIndexViewModel
             {
-                UserName = user.UserName
+                UserName = user.DisplayName ?? user.UserName
             };
 
             return View(vm);
