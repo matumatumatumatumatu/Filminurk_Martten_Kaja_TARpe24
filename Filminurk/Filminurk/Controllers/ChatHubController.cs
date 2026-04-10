@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace Filminurk.Controllers
 {
     [Authorize]
-    public class ChatController : Controller
+    public class ChatHubController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public ChatController(UserManager<ApplicationUser> userManager)
+        public ChatHubController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
