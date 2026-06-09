@@ -1,18 +1,19 @@
-﻿@model Filminurk.Models.Omdb.OmdbSearchViewModel
+﻿@{
+    ViewData["Title"] = "Import OMDb-st";
+}
+
 <h2>Import OMDb-st</h2>
 
-<form asp-action="FindMovie" method="post">
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Search" method="post">
     <div>
         <label>Filmi nimi</label><br />
-        <input asp-for="Title" />
-        <span asp-validation-for="Title"></span>
+        <input type="text" name="title" />
     </div>
 
     <button type="submit">Impordi</button>
-
-    <div asp-validation-summary="All"></div>
 </form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
